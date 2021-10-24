@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlms:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+
+        <section th:fragment="editar">
+            <form th:action="@{/guardar}" method="post" th:object="${libro}">
+                <!-- id para del objeto, sirve para modificar si no lo guarda como nuevo -->
+                <input type="hidden" name="id" th:field="*{id}"/>
+
+
+                <section th:replace="layout/botones :: botones"></section>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>[[#{modificar.titulo2}]]</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="codigo" th:text="#{libro.codigo}">Codigo:</label>
+                                        <input class="form-control" type="text" name="codigo" 
+                                               th:field="*{codigo}" required=""/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="titulo" th:text="#{libro.titulo}">Titulo:</label>
+                                        <input class="form-control" type="text" name="titulo" 
+                                               th:field="*{titulo}" required=""/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="precio" th:text="#{libro.precio}">Precio:</label>
+                                        <input class="form-control" type="number" name="precio" 
+                                               th:field="*{precio}" required="" min="0" step="0.01"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </form>
+        </section>
+
+    </body>
+</html>
